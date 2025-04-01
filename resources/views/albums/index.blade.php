@@ -10,12 +10,19 @@
 
 <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl">
     <h1 class="text-3xl font-bold text-center mb-6">All Albums</h1>
-
+    <a href="{{ route('bands.index') }}" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition-colors">
+        Bands
+    </a>
+    <a href="{{ route('songs.index') }}" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition-colors">
+        Songs
+    </a>
+    @auth
     <div class="text-center mb-4">
         <a href="{{ route('albums.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors">
             Add Album
         </a>
     </div>
+    @endauth
 
     <table class="table-auto w-full text-left border-collapse">
         <thead>

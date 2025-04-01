@@ -10,7 +10,12 @@
 
 <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl">
     <h1 class="text-3xl font-bold text-center mb-6">All Bands</h1>
-
+    <a href="{{ route('albums.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition-colors">
+        Albums
+    </a>
+    <a href="{{ route('songs.index') }}" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition-colors">
+        Songs
+    </a>
     <div class="text-center mb-4">
         <a href="{{ route('bands.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors">
             Add Band

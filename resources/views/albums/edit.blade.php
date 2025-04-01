@@ -36,6 +36,43 @@
         </div>
     </form>
 
+        <div class="mt-6">
+            <ul>
+                @foreach($album->songs as $song)
+                    <li>
+                        {{ $song->title }}
+                        <form action="{{route('albumsong.destroy', ['album' => $album->id, 'song' => $song->id])}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">x</button>
+                        </form>
+                    </li>
+                @endforeach
+
+            </ul>
+        </div>
+
+        <div class="mt-6">
+            <form action="{{route('albums.edit', $album->id)}}"  method="GET">
+                <input type="text" name="search">
+                <button type="submit">Zoeken</button>
+            </form>
+            <ul>
+                @foreach($songsNotInAlbum as $song)
+                    <li>
+                        {{ $song->title }}
+                        <form action="{{route('albumsong.store', ['album' => $album->id, 'song' => $song->id])}}" method="POST">
+                            @csrf
+                            <button type="submit">+</button>
+                        </form>
+                    </li>
+                @endforeach
+
+            </ul>
+        </div>
+
+
+
     <div class="mt-6 text-center">
         <a href="{{ route('albums.index') }}" class="text-indigo-600 hover:underline">Back to List</a>
     </div>

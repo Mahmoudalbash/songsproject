@@ -10,10 +10,24 @@
 
 <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
     <h1 class="text-2xl font-bold text-blue-600 text-center mb-6">
-        Band: {{ $band->name }} - {{ $band->genre }} - {{ $band->founded }} - {{ $band->active_till }}
+        Band: {{ $band->name }} - Band Genre: {{ $band->genre }} - Founded in: {{ $band->founded }} - Active Till: {{ $band->active_till }}
     </h1>
 
-    <div class="text-center mb-4">
+    <div class="mt-6">
+        <h2 class="text-xl font-bold text-blue-600 mb-4">Albums</h2>
+        @if($band->albums->isEmpty())
+            <p class="text-gray-700">No albums found for this band.</p>
+        @else
+            <ul class="list-disc list-inside text-gray-700">
+                @foreach($band->albums as $album)
+                    <li>{{ $album->name }}  Albums </li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+
+@auth()
+    <div class="text-center mb-4 mt-4">
         <form action="{{ route('bands.destroy', $band->id) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -23,15 +37,17 @@
         </form>
     </div>
 
+
     <div class="flex justify-between mt-4">
         <a href="{{ route('bands.edit', ['band' => $band->id]) }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors">
             Edit Band
         </a>
+        @endauth
         <a href="{{ route('bands.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition-colors">
             Back to List
         </a>
     </div>
 </div>
-
+<a href="{{ route('login') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors">Log in </a>
 </body>
 </html>
